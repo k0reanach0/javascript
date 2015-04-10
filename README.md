@@ -1,7 +1,7 @@
 # javascript
 Javascript - Helpful Stuff
 
-#### EVEN ODD EVEN ODD
+#### Even Odd Even Odd
 ```javascript
 for (var y = 0; y < size; y++) {
   for (var x = 0; x < size; x++) {
@@ -14,7 +14,7 @@ for (var y = 0; y < size; y++) {
 }
 ```
 
-#### SWAP CHARACTERS
+#### Swap Characters
 ```javascript
 function reverseArrayInPlace(array) {
   for (var i = 0; i < Math.floor(array.length / 2); i++) {
@@ -25,9 +25,8 @@ function reverseArrayInPlace(array) {
   return array;
 }
 ```
-######
 
-#### ITERATE ARRAY - BACKWARDS
+#### Iterate Array - Backwards
 ```javascript
 for (var i = array.length - 1; i >= 0; i--) {
   // CODE
