@@ -49,7 +49,7 @@ function arrayToList(array) {
 console.log(arrayToList([10, 20]));
 ```
 
-#### Reading List Data Structure
+#### Traversing List Data Structure
 ```javascript
 function listToArray(list) {
   var array = [];
