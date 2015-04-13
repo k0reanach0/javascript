@@ -32,3 +32,36 @@ for (var i = array.length - 1; i >= 0; i--) {
   // CODE
 }
 ```
+
+#### List Data Structure
+```javascript
+function arrayToList(array) {
+  for (var i = array.length - 1; i >= 0; i--) {
+    var list = {
+      value: array[i],
+      rest: list
+    };
+  }
+  return list;
+}
+
+console.log(arrayToList([10, 20]));
+```
+
+#### Reading List Data Structure
+```javascript
+function listToArray(list) {
+  var array = [];
+  /*
+   * node = list is only called once. Establishing the variable.
+   * node; Condition While node is true;
+   * node = node.rest; Incrementer - move to nested object.
+   */
+  for (var node = list; node; node = node.rest) {
+    array.push(node.value);
+  }
+  return array;
+}
+
+console.log(listToArray(arrayToList([10, 20, 30])));
+```
