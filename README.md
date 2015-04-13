@@ -112,3 +112,66 @@ console.log(deepEqual(obj, {here: 1, object: 2}));
 console.log(deepEqual(obj, {here: {is: "an"}, object: 2}));
 // → true
 ```
+
+#### Abstraction
+```javascript
+function forEach(array, action) {
+  for (var i = 0; i < array.length; i++)
+    action(array[i]);
+}
+
+forEach(["Wampeter", "Foma", "Granfalloon"], console.log);
+// → Wampeter
+// → Foma
+// → Granfalloon
+```
+
+```javascript
+function gatherCorrelations(journal) {
+  var phis = {};
+  journal.forEach(function(entry) {
+    entry.events.forEach(function(event) {
+      if (!(event in phis))
+        phis[event] = phi(tableFor(event, journal));
+    });
+  });
+  return phis;
+}
+```
+
+#### Higher-order Functions
+```javascript
+function greaterThan(n) {
+  return function(m) { return m > n; };
+}
+var greaterThan10 = greaterThan(10);
+console.log(greaterThan10(11));
+// → true
+
+function noisy(f) {
+  return function(arg) {
+    console.log("calling with", arg);
+    var val = f(arg);
+    console.log("called with", arg, "- got", val);
+    return val;
+  };
+}
+noisy(Boolean)(0);
+// → calling with 0
+// → called with 0 - got false
+
+function unless(test, then) {
+  if (!test) then();
+}
+function repeat(times, body) {
+  for (var i = 0; i < times; i++) body(i);
+}
+
+repeat(3, function(n) {
+  unless(n % 2, function() {
+    console.log(n, "is even");
+  });
+});
+// → 0 is even
+// → 2 is even
+```
