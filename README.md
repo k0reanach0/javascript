@@ -147,7 +147,9 @@ function greaterThan(n) {
 var greaterThan10 = greaterThan(10);
 console.log(greaterThan10(11));
 // → true
+```
 
+```javascript
 function noisy(f) {
   return function(arg) {
     console.log("calling with", arg);
@@ -159,7 +161,9 @@ function noisy(f) {
 noisy(Boolean)(0);
 // → calling with 0
 // → called with 0 - got false
+```
 
+```javascript
 function unless(test, then) {
   if (!test) then();
 }
