@@ -125,7 +125,7 @@ forEach(["Wampeter", "Foma", "Granfalloon"], console.log);
 // → Foma
 // → Granfalloon
 ```
-###### Before
+##### Before
 It contains two array-traversing loops.
 
 ```javascript
@@ -143,7 +143,7 @@ function gatherCorrelations(journal) {
 }
 ```
 
-###### After
+##### After
 Working with forEach makes it slightly shorter and quite a bit cleaner.
 
 ```javascript
