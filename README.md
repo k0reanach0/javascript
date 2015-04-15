@@ -125,6 +125,26 @@ forEach(["Wampeter", "Foma", "Granfalloon"], console.log);
 // → Foma
 // → Granfalloon
 ```
+###### Before
+It contains two array-traversing loops.
+
+```javascript
+function gatherCorrelations(journal) {
+  var phis = {};
+  for (var entry = 0; entry < journal.length; entry++) {
+    var events = journal[entry].events;
+    for (var i = 0; i < events.length; i++) {
+      var event = events[i];
+      if (!(event in phis))
+        phis[event] = phi(tableFor(event, journal));
+    }
+  }
+  return phis;
+}
+```
+
+###### After
+Working with forEach makes it slightly shorter and quite a bit cleaner.
 
 ```javascript
 function gatherCorrelations(journal) {
