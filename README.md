@@ -248,4 +248,4 @@ console.log(map(overNinety, function(person) {
 //    "Maria Haverbeke"]
 ```
 
-###### Like `forEach` and `filter`, `map` is also a standard method on arrays.
+Like `forEach` and `filter`, `map` is also a standard method on arrays.
