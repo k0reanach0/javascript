@@ -49,7 +49,7 @@ function arrayToList(array) {
 console.log(arrayToList([10, 20]));
 ```
 
-#### Traversing List Data Structure
+#### Traversingchro List Data Structure
 ```javascript
 function listToArray(list) {
   var array = [];
@@ -179,3 +179,53 @@ repeat(3, function(n) {
 // → 0 is even
 // → 2 is even
 ```
+
+#### Filter Function
+The example defined the function only in order to show what it does internally.
+
+```javascript
+function filter(array, test) {
+  var passed = [];
+  for (var i = 0; i < array.length; i++) {
+    if (test(array[i]))
+      passed.push(array[i]);
+  }
+  return passed;
+}
+
+console.log(filter(ancestry, function(person) {
+  return person.born > 1900 && person.born < 1925;
+}));
+// → [{name: "Philibert Haverbeke", …}, …]
+```
+
+#### Javascript Filter - Standard Method
+```javascript
+console.log(ancestry.filter(function(person) {
+  return person.father == "Carel Haverbeke";
+}));
+// → [{name: "Carolus Haverbeke", …}]
+```
+
+#### Map
+The map method transforms an array by applying a function to all of its elements and building a new array from the returned values.
+
+```javascript
+function map(array, transform) {
+  var mapped = [];
+  for (var i = 0; i < array.length; i++)
+    mapped.push(transform(array[i]));
+  return mapped;
+}
+
+var overNinety = ancestry.filter(function(person) {
+  return person.died - person.born > 90;
+});
+console.log(map(overNinety, function(person) {
+  return person.name;
+}));
+// → ["Clara Aernoudts", "Emile Haverbeke",
+//    "Maria Haverbeke"]
+```
+
+###### Like forEach and filter, map is also a standard method on arrays.
