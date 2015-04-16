@@ -246,6 +246,11 @@ console.log(map(overNinety, function(person) {
 }));
 // → ["Clara Aernoudts", "Emile Haverbeke",
 //    "Maria Haverbeke"]
+
+// Examples - More Possibilities
+console.log(map(overNinety, function(person) {
+  return person.name + " was " + person.sex.toUpperCase();
+}));
 ```
 
 Like `forEach` and `filter`, `map` is also a standard method on arrays.
