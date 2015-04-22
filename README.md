@@ -369,3 +369,9 @@ console.log(ancestry.filter(function(person) {
 console.log(ancestry.filter(isInSet.bind(null, theSet)));
 // → … same result
 ```
+
+#### Array Overview
+Arrays provide a number of useful higher-order methods—`forEach` to do something with each element in an array, `filter` to build a new array with some elements filtered out, `map` to build a new array where each element has been put through a function, and `reduce` to combine all an array’s elements into a single value.
+
+#### Function Overview
+Functions have an `apply` method that can be used to call them with an array specifying their arguments. They also have a `bind` method, which is used to create a partially applied version of the function.
