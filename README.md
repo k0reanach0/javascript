@@ -380,8 +380,8 @@ Functions have an `apply` method that can be used to call them with an array spe
 ```javascript
 var arrays = [[1, 2, 3], [4, 5], [6]];
 
-console.log(arrays.reduce(function(flat, current) { // flat = {}, current [1, 2, 3]
-  return flat.concat(current);
+console.log(arrays.reduce(function(flat, current) { ]
+  return flat.concat(current); // flat = {}, current [1, 2, 3
 }, []));
 
 // → [1, 2, 3, 4, 5, 6];
