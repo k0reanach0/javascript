@@ -377,6 +377,7 @@ Arrays provide a number of useful higher-order methods—`forEach` to do somethi
 Functions have an `apply` method that can be used to call them with an array specifying their arguments. They also have a `bind` method, which is used to create a partially applied version of the function.
 
 #### Using Reduce To Iterate A MDArray
+```javascript
 var arrays = [[1, 2, 3], [4, 5], [6]];
 
 console.log(arrays.reduce(function(flat, current) {
@@ -384,5 +385,5 @@ console.log(arrays.reduce(function(flat, current) {
 }, []));
 
 // → [1, 2, 3, 4, 5, 6];
-
+```
 flat is an object.
