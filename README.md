@@ -249,3 +249,14 @@ console.log(map(overNinety, function(person) {
 ```
 
 Like `forEach` and `filter`, `map` is also a standard method on arrays.
+
+#### Using Reduce To Iterate A MDArray
+var arrays = [[1, 2, 3], [4, 5], [6]];
+
+console.log(arrays.reduce(function(flat, current) {
+  return flat.concat(current);
+}, []));
+
+// → [1, 2, 3, 4, 5, 6];
+
+flat is an object.
