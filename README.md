@@ -386,4 +386,3 @@ console.log(arrays.reduce(function(flat, current) { ]
 
 // → [1, 2, 3, 4, 5, 6];
 ```
-flat is an object.
