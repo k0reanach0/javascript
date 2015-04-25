@@ -246,9 +246,135 @@ console.log(map(overNinety, function(person) {
 }));
 // → ["Clara Aernoudts", "Emile Haverbeke",
 //    "Maria Haverbeke"]
+
+// Examples - More Possibilities
+console.log(map(overNinety, function(person) {
+  return person.name + " was " + person.sex.toUpperCase();
+}));
 ```
 
 Like `forEach` and `filter`, `map` is also a standard method on arrays.
+
+#### Reduce
+```javascript
+function reduce(array, combine, start) {
+  var current = start;
+  for (var i = 0; i < array.length; i++)
+    current = combine(current, array[i]);
+  return current;
+}
+
+console.log(reduce([1, 2, 3, 4], function(a, b) {
+  return a + b;
+}, 0));
+// → 10
+```
+
+```javascript
+console.log(ancestry.reduce(function(min, cur) {
+  if (cur.born < min.born) return cur;
+  else return min;
+}));
+// → {name: "Pauwels van Haverbeke", born: 1535, …}
+```
+
+#### Composability
+```javascript
+function average(array) {
+  function plus(a, b) { return a + b; }
+  return array.reduce(plus) / array.length;
+}
+function age(p) { return p.died - p.born; }
+function male(p) { return p.sex == "m"; }
+function female(p) { return p.sex == "f"; }
+
+console.log(average(ancestry.filter(male).map(age)));
+// → 61.67
+console.log(average(ancestry.filter(female).map(age)));
+// → 54.56
+```
+
+Build up an object that associates names with people
+```javascript
+var byName = {};
+ancestry.forEach(function(person) {
+  byName[person.name] = person;
+});
+
+console.log(byName["Philibert Haverbeke"]);
+// → {name: "Philibert Haverbeke", …}
+```
+
+`reduceAncestors` condenses a value from a family tree. *Recursion*
+```javascript
+function reduceAncestors(person, f, defaultValue) {
+  function valueFor(person) {
+    if (person == null)
+      return defaultValue;
+    else
+      return f(person, valueFor(byName[person.mother]),
+                       valueFor(byName[person.father]));
+  }
+  return valueFor(person);
+}
+```
+
+```javascript
+function sharedDNA(person, fromMother, fromFather) {
+  if (person.name == "Pauwels van Haverbeke")
+    return 1;
+  else
+    return (fromMother + fromFather) / 2;
+}
+var ph = byName["Philibert Haverbeke"];
+console.log(reduceAncestors(ph, sharedDNA, 0) / 4);
+// → 0.00049
+```
+
+Lived past 70
+```javascript
+function countAncestors(person, test) {
+  function combine(person, fromMother, fromFather) {
+    var thisOneCounts = test(person);
+    return fromMother + fromFather + (thisOneCounts ? 1 : 0);
+  }
+  return reduceAncestors(person, combine, 0);
+}
+function longLivingPercentage(person) {
+  var all = countAncestors(person, function(person) {
+    return true;
+  });
+  var longLiving = countAncestors(person, function(person) {
+    return (person.died - person.born) >= 70;
+  });
+  return longLiving / all;
+}
+console.log(longLivingPercentage(byName["Emile Haverbeke"]));
+// → 0.145
+```
+
+#### Bind
+```javascript
+var theSet = ["Carel Haverbeke", "Maria van Brussel",
+              "Donald Duck"];
+function isInSet(set, person) {
+  return set.indexOf(person.name) > -1;
+}
+
+console.log(ancestry.filter(function(person) {
+  return isInSet(theSet, person);
+}));
+// → [{name: "Maria van Brussel", …},
+//    {name: "Carel Haverbeke", …}]
+console.log(ancestry.filter(isInSet.bind(null, theSet)));
+// → … same result
+```
+
+#### Array Overview
+Arrays provide a number of useful higher-order methods—`forEach` to do something with each element in an array, `filter` to build a new array with some elements filtered out, `map` to build a new array where each element has been put through a function, and `reduce` to combine all an array’s elements into a single value.
+
+#### Function Overview
+Functions have an `apply` method that can be used to call them with an array specifying their arguments. They also have a `bind` method, which is used to create a partially applied version of the function.
 
 #### Using Reduce To Iterate A MDArray
 var arrays = [[1, 2, 3], [4, 5], [6]];
