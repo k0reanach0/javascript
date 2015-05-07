@@ -606,3 +606,37 @@ Arrays provide a number of useful higher-order methods—`forEach` to do somethi
 
 #### Function Overview
 Functions have an `apply` method that can be used to call them with an array specifying their arguments. They also have a `bind` method, which is used to create a partially applied version of the function.
+
+#### Using Reduce To Iterate A MDArray
+```javascript
+var arrays = [[1, 2, 3], [4, 5], [6]];
+
+console.log(arrays.reduce(function(flat, current) { ]
+  return flat.concat(current); // flat = {}, current [1, 2, 3]
+}, []));
+
+// → [1, 2, 3, 4, 5, 6];
+```
+]
+
+`code`
+```javascript
+function average(array) {
+  function plus(a, b) { return a + b; }
+  return array.reduce(plus) / array.length;
+}
+
+var byName = {};
+ancestry.forEach(function(person) {
+  byName[person.name] = person;
+});
+
+var differences = ancestry.filter(function(person) {
+  return byName[person.mother] != null;
+}).map(function(person) {
+  return person.born - byName[person.mother].born;
+});
+
+console.log(average(differences));
+// → 31.2
+```
